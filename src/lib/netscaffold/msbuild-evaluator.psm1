@@ -42,6 +42,7 @@ $_buildOps = @(
 function Convert-BuildExpression {
   param(
     [Parameter(Mandatory = $true)]
+    [AllowEmptyString()]
     [string]$RawString, 
         
     [Parameter(Mandatory = $false)]
@@ -138,4 +139,28 @@ function Get-ProjectProperties {
   return $props
 }
 
-Export-ModuleMember Convert-BuildExpression, Invoke-BuildExpression, Test-BuildCondition, Get-ProjectProperties
+<#
+  Extract the project type guids listed in the project file itself
+#>
+function Get-ProjectTypeGuids {
+  param([string]$ProjectPath)
+  $x = New-Object xml
+  $x.Load($ProjectPath)
+  $guids = [guid[]]::new(0)
+
+  $projectProps = Get-ProjectProperties $ProjectPath
+  $typeGuids = $projectProps.ProjectTypeGuids
+  if(Test-IsEmpty $typeGuids) { return ,$guids }
+
+  $strGuids = $typeGuids.Split(';')
+  foreach($strGuid in $strGuids) {
+    $guid = [guid]::Empty
+    if([guid]::TryParse($strGuid, [ref]$guid)) {
+      $guids += [guids[]]@($guid)
+    }
+  }
+
+  return ,$guids
+}
+
+Export-ModuleMember Convert-BuildExpression, Invoke-BuildExpression, Test-BuildCondition, Get-ProjectProperties, Get-ProjectTypeGuids

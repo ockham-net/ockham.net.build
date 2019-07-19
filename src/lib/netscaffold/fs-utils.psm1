@@ -96,12 +96,12 @@ function Get-RelativePath {
 
 }
 
-$OnRemoveScript = { 
-  Remove-Accelerator IOFile
-  Remove-Accelerator IOPath
-  Remove-Accelerator IODir
-}
+# $OnRemoveScript = { 
+#   Remove-Accelerator IOFile
+#   Remove-Accelerator IOPath
+#   Remove-Accelerator IODir
+# }
 
-$ExecutionContext.SessionState.Module.OnRemove += $OnRemoveScript
+# $ExecutionContext.SessionState.Module.OnRemove += $OnRemoveScript
 
 Export-ModuleMember -Function Get-CurrentDirectory, Set-CurrentDirectory, Get-RelativePath, Test-FSPath 
