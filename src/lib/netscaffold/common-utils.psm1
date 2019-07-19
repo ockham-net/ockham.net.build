@@ -47,6 +47,13 @@ function Add-Accelerator {
   $Accelerators::Add($Alias, ([type]$Type))
 }
 
+function New-PSObject {
+  [CmdletBinding()]
+  param([Parameter(Mandatory=$true,ValueFromPipeline=$true,Position=0)][HashTable]$Property)
+
+  return New-Object psobject -Property $Property
+}
+
 <#
 Removing accelerators is not yet supported, despite the existence
 of the [TypeAccelerators]::Remove method.
@@ -77,4 +84,4 @@ $OnRemoveScript = {
 $ExecutionContext.SessionState.Module.OnRemove += $OnRemoveScript
 #>
 
-Export-ModuleMember Test-IsEmpty, Test-IsNotEmpty, Add-Accelerator #, Remove-Accelerator
+Export-ModuleMember Test-IsEmpty, Test-IsNotEmpty, Add-Accelerator, New-PSObject #, Remove-Accelerator

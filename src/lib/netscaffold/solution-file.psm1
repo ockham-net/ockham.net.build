@@ -1,4 +1,4 @@
-
+using namespace System.Collections.Generic
 Import-Module (Join-Path $PSScriptRoot common-utils.psm1)
 Import-Module (Join-Path $PSScriptRoot fs-utils.psm1)
 
@@ -27,7 +27,7 @@ function New-ProjectGuid {
     Use Regex.Escape() on Pattern before matching
 #>
 function Find-Line {
-  param([ienumerable[string]]$InputObject, $Pattern, [switch]$Regex, [switch]$Escape, [int]$StartIndex = 0)
+  param([IEnumerable[string]]$InputObject, $Pattern, [switch]$Regex, [switch]$Escape, [int]$StartIndex = 0)
 
   if ($Regex -and $Escape) {
     $Pattern = [regex]::Escape($Pattern)
@@ -177,7 +177,7 @@ function Get-ProjectGraph {
     $projectName = $info[0]
     $projectPath = $info[1]
     $projectGuid = $info[2]
-    $projects[$projectGuid] = newobj @{
+    $projects[$projectGuid] = New-PSObject @{
       Guid          = $projectGuid
       TypeGuid      = $typeGuid
       Name          = $projectName
