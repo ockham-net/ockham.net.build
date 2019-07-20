@@ -1,16 +1,15 @@
-param(
-  [ValidateSet('common-utils', 'fs-utils', 'msbuild-evaluator', $null)]
+param( 
   [string]$Module
 )
 
 $modules = @()
 if([string]::IsNullOrEmpty($Module)) {
-  $modules = @('common-utils', 'fs-utils', 'msbuild-evaluator')
+  $modules = @('common-utils', 'fs-utils', 'msbuild-evaluator', 'netscaffold', 'project-registry')
 } else {
   $modules = @($Module)
 }
 
-$testDir = [System.IO.Path]::Combine($PSScriptRoot, 'tests', 'lib')
+$testDir = [System.IO.Path]::Combine($PSScriptRoot, 'tests', 'netscaffold')
 
 foreach($mName in $modules) {
   $testFile =  (Join-Path $testDir "$mName.tests.ps1")

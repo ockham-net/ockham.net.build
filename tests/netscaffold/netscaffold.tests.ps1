@@ -1,4 +1,4 @@
-$srcRoot = [System.IO.Path]::Combine($PSScriptRoot, '..', '..', 'src', 'lib')
+$srcRoot = [System.IO.Path]::Combine($PSScriptRoot, '..', '..', 'src', 'netscaffold')
 Import-Module Pester
 
 if($null -ne (Get-Module netscaffold)) { 
