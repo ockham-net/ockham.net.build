@@ -1,7 +1,6 @@
-Import-Module (Join-Path $PSScriptRoot common-utils.psm1)
-Import-Module (Join-Path $PSScriptRoot fs-utils.psm1)
-Import-Module (Join-Path $PSScriptRoot project-registry.psm1)
-Import-Module (Join-Path $PSScriptRoot msbuild-evaluator.psm1)
+Import-Module ([System.IO.Path]::Combine([string[]]@($PSScriptRoot, '..', '..', 'psutil', 'psutil.psd1')))
+Import-Module ([System.IO.Path]::Combine([string[]]@($PSScriptRoot, '..', 'modules', 'project-registry.psm1')))
+Import-Module ([System.IO.Path]::Combine([string[]]@($PSScriptRoot, '..', 'modules', 'msbuild-evaluator.psm1')))
  
 # See https://www.codeproject.com/Reference/720512/List-of-Visual-Studio-Project-Type-GUIDs for future reference
 

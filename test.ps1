@@ -4,7 +4,7 @@ param(
 
 $modules = @()
 if([string]::IsNullOrEmpty($Module)) {
-  $modules = @('common-utils', 'fs-utils', 'msbuild-evaluator', 'netscaffold', 'project-registry')
+  $modules = @('common-utils', 'fs-utils', 'msbuild-evaluator', 'project-registry', 'netscaffold')
 } else {
   $modules = @($Module)
 }

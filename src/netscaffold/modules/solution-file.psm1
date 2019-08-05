@@ -1,6 +1,6 @@
 using namespace System.Collections.Generic
-Import-Module (Join-Path $PSScriptRoot common-utils.psm1)
-Import-Module (Join-Path $PSScriptRoot fs-utils.psm1)
+
+Import-Module ([System.IO.Path]::Combine([string[]]@($PSScriptRoot, '..', '..', 'psutil', 'psutil.psd1')))
 
 # ==========================================
 #  Internal functions

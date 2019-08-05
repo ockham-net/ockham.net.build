@@ -1,13 +1,14 @@
 $Accelerators = [PowerShell].Assembly.GetType("System.Management.Automation.TypeAccelerators")
-$CompletionCompleters = [System.Management.Automation.CompletionCompleters]
-$mClearCache = $CompletionCompleters.GetMethod('UpdateTypeCacheOnAssemblyLoad', [System.Reflection.BindingFlags]'NonPublic,Static')
 
-function Clear-TypeCache {
-  $mClearCache.Invoke($null, @( `
-    [System.AppDomain]::CurrentDomain, `
-    [System.AssemblyLoadEventArgs]::new([powershell].Assembly) `
-  ))
-}
+# $CompletionCompleters = [System.Management.Automation.CompletionCompleters]
+# $mClearCache = $CompletionCompleters.GetMethod('UpdateTypeCacheOnAssemblyLoad', [System.Reflection.BindingFlags]'NonPublic,Static')
+
+# function Clear-TypeCache {
+#   $mClearCache.Invoke($null, @( `
+#     [System.AppDomain]::CurrentDomain, `
+#     [System.AssemblyLoadEventArgs]::new([powershell].Assembly) `
+#   ))
+# }
 
 <#
   Test whether the input value is null, or an empty or whitespace string
